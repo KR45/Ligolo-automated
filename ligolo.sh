@@ -28,7 +28,7 @@ else
 fi
 
 echo
-read -p $'\e[32mEnter Subnet (leave empty to skip): \e[0m'  sub
+read -ep $'\e[32mEnter Subnet (leave empty to skip): \e[0m'  sub
 
 if [ -n "$sub" ]; then
     if ip route show | grep -q "$sub"; then
@@ -44,10 +44,10 @@ if [ -n "$sub" ]; then
 fi
 
 echo
-read -p $'\e[32mEnter Port : \e[0m'  port
+read -ep $'\e[32mEnter Port : \e[0m'  port
 echo
 
-read -p $'\e[32mEnter IP for agent (eg: 10.10.x.x OR tun0) : \e[0m' ip
+read -ep $'\e[32mEnter IP for agent (eg: 10.10.x.x OR tun0) : \e[0m' ip
 
 if [[ "$ip" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     echo -e "\e[34mUsing provided IP address: $ip\e[0m"
