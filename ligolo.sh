@@ -49,6 +49,6 @@ else
 fi
 
 
-read -p "Enter Port : ?"  port
+read -p "Enter Port : "  port
 /usr/bin/proxy -selfcert -laddr 0.0.0.0:$port
 
