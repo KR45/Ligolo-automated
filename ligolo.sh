@@ -59,6 +59,36 @@ else
     exit 1
 fi
 
+# uploading agent
+
+read -ep $'\e[32mEnter Directory of agent: \e[0m' loc
+
+if [ ! -d "$loc" ]; then
+
+	echo -e "\e[1;31mUnable to locate directory $loc\e[0m"
+else
+
+	echo -e "\e[1;32mDirectory located $loc\e[0m"
+	
+	python3 -m http.server -d $loc > server.log 2>&1 &
+
+	# Store the process ID (PID) of the server
+	SERVER_PID=$!
+
+	# Monitor the server log for the successful transfer message
+	while true; do
+	    if grep -q "GET /agent HTTP/1.1\" 200" server.log; then
+		echo -e "\e[1;32mSuccessful transfer detected. Stopping the server...\e[0m"
+		# Terminate the server process
+		kill $SERVER_PID
+		break
+	    fi
+	    # Wait for a while before checking again
+	    sleep 5
+	done
+fi
+
+
 echo
 echo -e "\e[1;31mLinux: ./agent -connect $ip:$port -ignore-cert\e[0m"
 echo -e "\e[1;31mWindows: .\\\agent.exe -connect $ip:$port -ignore-cert\e[0m"
