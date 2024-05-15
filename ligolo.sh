@@ -81,6 +81,7 @@ else
 		echo -e "\e[1;32mSuccessful transfer detected. Stopping the server...\e[0m"
 		# Terminate the server process
 		kill $SERVER_PID
+  		rm server.log
 		break
 	    fi
 	    # Wait for a while before checking again
