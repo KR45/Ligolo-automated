@@ -69,10 +69,12 @@ if [ ! -d "$loc" ]; then
 else
 
 	echo -e "\e[1;32mDirectory located $loc\e[0m"
-	
-	python3 -m http.server -d $loc > server.log 2>&1 &
 
-	echo -e "\e[1;32Python server running at 8000 \e[0m"
+  	read -ep $'\e[32m Enter port for python server: \e[0m' ser
+	
+	python3 -m http.server $ser -d $loc > server.log 2>&1 &
+
+	echo -e "\e[1;32mPython server running at $ser \e[0m"
   
 	# Store the process ID (PID) of the server
 	SERVER_PID=$!
