@@ -61,6 +61,8 @@ fi
 
 # uploading agent
 
+echo -e "\e[1;31mIf file is already uploaded you can skip, press enter\e[0m"
+
 read -ep $'\e[32mEnter Directory of agent: \e[0m' loc
 
 if [ ! -d "$loc" ]; then
