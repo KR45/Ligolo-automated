@@ -72,6 +72,8 @@ else
 	
 	python3 -m http.server -d $loc > server.log 2>&1 &
 
+	echo -e "\e[1;32Python server running at 8000 \e[0m"
+  
 	# Store the process ID (PID) of the server
 	SERVER_PID=$!
 
